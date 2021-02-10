@@ -7,8 +7,8 @@ import { VehicleSchema } from './vehicle.model';
 
 @Module({
     imports:[
-        MongooseModule.forFeature([{name:'Vehicle', schema: VehicleSchema}
-    ])],
+        MongooseModule.forFeature([{name:'vehicle', schema: VehicleSchema}])
+    ],
     controllers:[VehicleController],
     providers:[VehiclesService]
 })

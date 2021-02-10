@@ -1,23 +1,22 @@
-import { Controller, Get, Param, Patch } from '@nestjs/common';
+import { Controller, Get, Param, Patch, Body } from '@nestjs/common';
 import { VehiclesService } from './vehicles.service';
 
 
-@Controller('vehicles')
+@Controller('vehicle')
 export class VehicleController {
     constructor (private vehiclesService: VehiclesService) {}
 
     @Get()
-    async getVehicles(){
-        const vehicles = await this.vehiclesService.getVehicles();
-        return vehicles;
+    getAllVehicles(){
+        return this.vehiclesService.getVehicles();
     }
 
     @Patch(':id')
-    updateproduct(
+    async updateproduct(
         @Param('id') id: string,
-        @Param('maintenance') maintenance: Boolean
+        @Body('maintenance') maintenance: boolean
     ) {
-        this.vehiclesService.updateVehicleMaintanance(id, maintenance);
+        await this.vehiclesService.updateVehicleMaintanance(id, maintenance);
         return null;
     }
 
